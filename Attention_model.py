@@ -189,40 +189,4 @@ class Attn(nn.Module):
         return out
 
 
-if __name__ == '__main__':
-    # loss = torch.nn.L1Loss().cuda()
-    # ATT = Attn(1).cuda()
-    # target = torch.randn(1, 1, 32, 32).cuda()
-    # optimizer = torch.optim.Adam(ATT.parameters(), lr=0.01, betas=(0.5, 0.99))
-    # # print(out)
-    # for i in range(1000):
-    #     x = torch.randn(1, 1, 32, 32).cuda()
-    #     out = ATT(x)
-    #     totao_loss = loss(out, target)
-    #
-    #     optimizer.zero_grad()
-    #     totao_loss.backward()
-    #     optimizer.step()
-    #     print(totao_loss.item())
-
-    x = np.load(r'F:\Data\2D_CycleGAN\F_data_each_picture_cut_1_Mask/475551 dufuxian.npy')
-    plt.imshow(x, cmap="Greys_r")
-    plt.show()
-    num_f = np.sum(x)
-    x = torch.from_numpy(x).unsqueeze(0)
-    x = x.unsqueeze(0)
-    ATT = Attn(1)
-    out = ATT(x)
-    out = out.squeeze(0)
-    out = out.squeeze(0).detach().numpy()
-    plt.imshow(out, cmap='Greys_r')
-    plt.show()
-    out[out <= 0.5] = 0
-    out[out > 0.5] = 1
-    num = np.sum(out)
-    print(num, num_f)
-    plt.imshow(out, cmap='Greys_r')
-    plt.show()
-
-    # print(out.shape)
 
